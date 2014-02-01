@@ -24,5 +24,15 @@ namespace JulianPerrottName
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
         }
+
+        protected void Application_EndRequest()
+        {
+            if (Context.Response.StatusCode == 404)
+            {
+                Response.Redirect("~/Home/Error/Error404");
+            }
+            
+        }
+
     }
 }

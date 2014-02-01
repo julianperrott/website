@@ -181,8 +181,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\Home\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Home\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Home\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Home\Controllers\GalleryController.cs" />
+    <Compile Include="Areas\Home\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +195,46 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Home\css\animate.css" />
+    <Content Include="Areas\Home\css\bootstrap.css" />
+    <Content Include="Areas\Home\css\bootstrap.min.css" />
+    <Content Include="Areas\Home\css\custom.css" />
+    <Content Include="Areas\Home\css\elements.css" />
+    <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Home\img\about.jpg" />
+    <Content Include="Areas\Home\img\bg3.jpg" />
+    <Content Include="Areas\Home\img\blank.jpg" />
+    <Content Include="Areas\Home\img\blog-1.jpg" />
+    <Content Include="Areas\Home\img\blog-2.jpg" />
+    <Content Include="Areas\Home\img\blog-3.jpg" />
+    <Content Include="Areas\Home\img\dots.jpg" />
+    <Content Include="Areas\Home\img\face1.jpg" />
+    <Content Include="Areas\Home\img\face2.jpg" />
+    <Content Include="Areas\Home\img\face3.jpg" />
+    <Content Include="Areas\Home\img\face4.jpg" />
+    <Content Include="Areas\Home\img\falling-leafs.png" />
+    <Content Include="Areas\Home\img\favicon.ico" />
+    <Content Include="Areas\Home\img\iMac.png" />
+    <Content Include="Areas\Home\img\iPad.png" />
+    <Content Include="Areas\Home\img\iPhone.png" />
+    <Content Include="Areas\Home\img\works1.jpg" />
+    <Content Include="Areas\Home\img\works2.jpg" />
+    <Content Include="Areas\Home\img\works2_big.jpg" />
+    <Content Include="Areas\Home\img\works3.jpg" />
+    <Content Include="Areas\Home\img\works3_big.jpg" />
+    <Content Include="Areas\Home\img\works4.jpg" />
+    <Content Include="Areas\Home\img\works4_big.jpg" />
+    <Content Include="Areas\Home\js\bootstrap.js" />
+    <Content Include="Areas\Home\js\bootstrap.min.js" />
+    <Content Include="Areas\Home\js\custom.js" />
+    <Content Include="Areas\Home\js\jquery-1.9.1.js" />
+    <Content Include="Areas\Home\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\Home\js\scrolltopcontrol.js" />
+    <Content Include="Areas\Home\Views\Error\Error404.cshtml" />
+    <Content Include="Areas\Home\Views\Contact\Index.cshtml" />
+    <None Include="Areas\Home\Views\Gallery\Bubbles.cshtml" />
+    <None Include="Areas\Home\Views\Gallery\Item.cshtml" />
+    <None Include="Areas\Home\Views\Gallery\Text.cshtml" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -250,14 +294,23 @@
     <Content Include="Html\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Html\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Html\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Home\Views\Shared\_Head.cshtml" />
+    <Content Include="Areas\Home\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Home\Views\Shared\_Legal.cshtml" />
+    <Content Include="Areas\Home\Views\Shared\_Navbar.cshtml" />
+    <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Home\Views\Shared\_Scripts.cshtml" />
+    <Content Include="Areas\Home\js\jquery-1.9.1.min.map" />
+    <None Include="Areas\Home\Views\Web.config" />
+    <Content Include="Areas\Home\Views\Home\Index.cshtml" />
     <None Include="Properties\PublishProfiles\julianperrott.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Html\404.html" />
     <Content Include="Html\about-us.html" />
-    <Content Include="Html\blog-post.html" />
-    <Content Include="Html\blog-timeline.html" />
-    <Content Include="Html\blog.html" />
-    <Content Include="Html\contact.html" />
+    <None Include="Areas\Home\Views\Blog\Post.cshtml" />
+    <None Include="Areas\Home\Views\Blog\Timeline.cshtml" />
+    <None Include="Areas\Home\Views\Blog\Index.cshtml" />
     <Content Include="Html\css\animate.css" />
     <Content Include="Html\css\bootstrap.css" />
     <Content Include="Html\css\bootstrap.min.css" />
@@ -266,9 +319,6 @@
     <Content Include="Html\edit-profile.html" />
     <Content Include="Html\faq.html" />
     <Content Include="Html\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Html\gallery-bubbles.html" />
-    <Content Include="Html\gallery-item.html" />
-    <Content Include="Html\gallery-text.html" />
     <Content Include="Html\img\about.jpg" />
     <Content Include="Html\img\bg3.jpg" />
     <Content Include="Html\img\blank.jpg" />
@@ -342,7 +392,7 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Home\Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
@@ -357,11 +407,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Areas\Home\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Home\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
