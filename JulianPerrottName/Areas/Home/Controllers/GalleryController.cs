@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace JulianPerrottName.Areas.Home.Controllers
+﻿namespace JulianPerrottName.Areas.Home.Controllers
 {
+    using System.Web.Mvc;
+
     public class GalleryController : Controller
     {
         public ActionResult Text()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Bubbles()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Item()
         {
-            return View();
+            return this.View();
         }
-
     }
 }

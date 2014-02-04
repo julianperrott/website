@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace JulianPerrottName.Areas.Home.Controllers
+﻿namespace JulianPerrottName.Areas.Home.Controllers
 {
+    using System.Web.Mvc;
+
     public class BlogController : Controller
     {
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Timeline()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Post()
         {
-            return View();
+            return this.View();
         }
-
     }
 }

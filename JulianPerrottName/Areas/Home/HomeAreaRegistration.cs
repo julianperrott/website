@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace JulianPerrottName.Areas.Home
+﻿namespace JulianPerrottName.Areas.Home
 {
+    using System.Web.Mvc;
+
     public class HomeAreaRegistration : AreaRegistration
     {
         public override string AreaName
@@ -17,8 +17,7 @@ namespace JulianPerrottName.Areas.Home
             context.MapRoute(
                 "Home_default",
                 "Home/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new { action = "Index", id = UrlParameter.Optional });
         }
     }
 }

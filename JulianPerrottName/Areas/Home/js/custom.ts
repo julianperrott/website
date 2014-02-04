@@ -1,5 +1,6 @@
 /// <reference path="../../../typescript definitions/jquery.d.ts" />
 /// <reference path="../../../typescript definitions/bootstrap.d.ts" />
+
 // Search box toggle
 // =================
 $("#search-btn").on("click", function () {
@@ -10,13 +11,12 @@ $("#search-btn").on("click", function () {
 
 // 404 error page smile
 // ====================
-$("#search-404").focus(function () {
+$("#search-404").focus( () => {
     $("#smile").removeClass("fa-meh-o flipInX");
     $("#smile").addClass("fa-smile-o flipInY");
 });
 
-$("#search-404").blur(function () {
+$("#search-404").blur(() => {
     $("#smile").removeClass("fa-smile-o flipInY");
     $("#smile").addClass("fa-meh-o flipInX");
 });
-//# sourceMappingURL=custom.js.map

@@ -1,15 +1,12 @@
-﻿using System.Web.Mvc;
-
-namespace JulianPerrottName.Areas.Home.Controllers
+﻿namespace JulianPerrottName.Areas.Home.Controllers
 {
+    using System.Web.Mvc;
+
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/Home/
-
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }

@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace JulianPerrottName.Areas.Home.Controllers
+﻿namespace JulianPerrottName.Areas.Home.Controllers
 {
+    using System.Web.Mvc;
+
     public class ContactController : Controller
     {
-        //
-        // GET: /Home/Contact/
-
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
-
     }
 }
