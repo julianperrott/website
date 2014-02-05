@@ -20,3 +20,26 @@ $("#search-404").blur(() => {
     $("#smile").removeClass("fa-smile-o flipInY");
     $("#smile").addClass("fa-meh-o flipInX");
 });
+
+var site = site || {};
+site.baseUrl = site.baseUrl || "";
+
+$(document).ready(function (e) {
+
+    // locate each partial section.
+    // if it has a URL set, load the contents into the area.
+
+    var cnt:number = 0;
+
+    $(".partialContents").each(function (index, item) {
+        if (cnt == 10) { return;}
+        var url = site.baseUrl + $(item).data("url");
+        if (url && url.length > 0)
+        {
+            cnt++;
+            $(item).load(url);
+        }
+    });
+
+    
+});

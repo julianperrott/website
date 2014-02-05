@@ -1,0 +1,45 @@
+﻿@using JulianPerrottName.Models;
+@model List<BlogPostSummary>
+
+@{
+    Layout = null;
+}
+
+
+@if(Model==null || Model.Count==0 )
+{
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="~/Areas/Home/img/blog-1.jpg" alt="Blog Message">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading"><a href="#">Story title</a></h4>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id ipsum varius, tincidunt odio nec, placerat enim.
+        </div>
+    </div>
+
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="~/Areas/Home/img/blog-2.jpg" alt="Blog Message">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading"><a href="#">Story title</a></h4>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id ipsum varius, tincidunt odio nec, placerat enim.
+        </div>
+    </div>
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="~/Areas/Home/img/blog-3.jpg" alt="Blog Message">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading"><a href="#">Story title</a></h4>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id ipsum varius, tincidunt odio nec, placerat enim.
+        </div>
+    </div>
+}
+else
+{
+    @Html.DisplayFor(model => model);
+}
+
+<a href="#" class="read-more">Read more stories...</a>

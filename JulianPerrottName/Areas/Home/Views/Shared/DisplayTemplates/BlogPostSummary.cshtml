@@ -1,0 +1,13 @@
+﻿@model JulianPerrottName.Models.BlogPostSummary
+@{
+    Layout = null;
+}
+<div class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object" src="@Model.Image" alt="Blog Message">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading"><a href="#">@Model.Title</a></h4>
+        @Model.Description
+    </div>
+</div>

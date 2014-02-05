@@ -4,9 +4,9 @@ protected void btnReset_Click(object sender, EventArgs e)
 {
     try
     {
-        BlogEngine.Core.Post.Reload();
-        HttpRuntime.Close();
-        lblResult.Text = "Reload successful!";
+        //BlogEngine.Core.Post.Reload();
+        //HttpRuntime.Close();
+        //lblResult.Text = "Reload successful!";
     }
     catch
     {
