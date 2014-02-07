@@ -1,0 +1,1175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_70371_blogengineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="be_BlogRollItems">
+          <Key>
+            <PropertyRef Name="BlogRollRowId" />
+          </Key>
+          <Property Name="BlogRollRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BlogRollId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="BlogUrl" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FeedUrl" Type="varchar" MaxLength="255" />
+          <Property Name="Xfn" Type="varchar" MaxLength="255" />
+          <Property Name="SortIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Blogs">
+          <Key>
+            <PropertyRef Name="BlogRowId" />
+          </Key>
+          <Property Name="BlogRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BlogName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Hostname" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsAnyTextBeforeHostnameAccepted" Type="bit" Nullable="false" />
+          <Property Name="StorageContainerName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VirtualPath" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsPrimary" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsSiteAggregation" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Categories">
+          <Key>
+            <PropertyRef Name="CategoryRowID" />
+          </Key>
+          <Property Name="CategoryRowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="ParentID" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_70371_blogengine.dbo.be_CustomFields' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="be_CustomFields">
+          <Key>
+            <PropertyRef Name="CustomType" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="BlogId" />
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="CustomType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ObjectId" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="be_DataStoreSettings">
+          <Key>
+            <PropertyRef Name="DataStoreSettingRowId" />
+          </Key>
+          <Property Name="DataStoreSettingRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExtensionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExtensionId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Settings" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_FileStoreDirectory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentID" Type="uniqueidentifier" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FullPath" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAccess" Type="datetime" Nullable="false" />
+          <Property Name="LastModify" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_FileStoreFiles">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentDirectoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FullPath" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Contents" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAccess" Type="datetime" Nullable="false" />
+          <Property Name="LastModify" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_FileStoreFileThumbs">
+          <Key>
+            <PropertyRef Name="thumbnailId" />
+          </Key>
+          <Property Name="thumbnailId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="size" Type="int" Nullable="false" />
+          <Property Name="contents" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PackageFiles">
+          <Key>
+            <PropertyRef Name="PackageId" />
+            <PropertyRef Name="FileOrder" />
+          </Key>
+          <Property Name="PackageId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FileOrder" Type="int" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsDirectory" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Packages">
+          <Key>
+            <PropertyRef Name="PackageId" />
+          </Key>
+          <Property Name="PackageId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Pages">
+          <Key>
+            <PropertyRef Name="PageRowID" />
+          </Key>
+          <Property Name="PageRowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PageID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="PageContent" Type="nvarchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="IsFrontPage" Type="bit" />
+          <Property Name="Parent" Type="uniqueidentifier" />
+          <Property Name="ShowInList" Type="bit" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PingService">
+          <Key>
+            <PropertyRef Name="PingServiceID" />
+          </Key>
+          <Property Name="PingServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="be_PostCategory">
+          <Key>
+            <PropertyRef Name="PostCategoryID" />
+          </Key>
+          <Property Name="PostCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PostComment">
+          <Key>
+            <PropertyRef Name="PostCommentRowID" />
+          </Key>
+          <Property Name="PostCommentRowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostCommentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentCommentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CommentDate" Type="datetime" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="ModeratedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsSpam" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PostNotify">
+          <Key>
+            <PropertyRef Name="PostNotifyID" />
+          </Key>
+          <Property Name="PostNotifyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NotifyAddress" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="be_Posts">
+          <Key>
+            <PropertyRef Name="PostRowID" />
+          </Key>
+          <Property Name="PostRowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="PostContent" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="IsCommentEnabled" Type="bit" />
+          <Property Name="Raters" Type="int" />
+          <Property Name="Rating" Type="real" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PostTag">
+          <Key>
+            <PropertyRef Name="PostTagID" />
+          </Key>
+          <Property Name="PostTagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="be_Profiles">
+          <Key>
+            <PropertyRef Name="ProfileID" />
+          </Key>
+          <Property Name="ProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SettingName" Type="nvarchar" MaxLength="200" />
+          <Property Name="SettingValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="be_QuickNotes">
+          <Key>
+            <PropertyRef Name="QuickNoteID" />
+          </Key>
+          <Property Name="QuickNoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoteID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Updated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="be_QuickSettings">
+          <Key>
+            <PropertyRef Name="QuickSettingID" />
+          </Key>
+          <Property Name="QuickSettingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SettingName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SettingValue" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Referrers">
+          <Key>
+            <PropertyRef Name="ReferrerRowId" />
+          </Key>
+          <Property Name="ReferrerRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferrerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferralDay" Type="datetime" Nullable="false" />
+          <Property Name="ReferrerUrl" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReferralCount" Type="int" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="255" />
+          <Property Name="IsSpam" Type="bit" />
+        </EntityType>
+        <EntityType Name="be_RightRoles">
+          <Key>
+            <PropertyRef Name="RightRoleRowId" />
+          </Key>
+          <Property Name="RightRoleRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RightName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Rights">
+          <Key>
+            <PropertyRef Name="RightRowId" />
+          </Key>
+          <Property Name="RightRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RightName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Settings">
+          <Key>
+            <PropertyRef Name="SettingRowId" />
+          </Key>
+          <Property Name="SettingRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SettingName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SettingValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="be_StopWords">
+          <Key>
+            <PropertyRef Name="StopWordRowId" />
+          </Key>
+          <Property Name="StopWordRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StopWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_UserRoles">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastLoginTime" Type="datetime" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_be_FileStoreFiles_be_FileStoreDirectory">
+          <End Role="be_FileStoreDirectory" Type="Self.be_FileStoreDirectory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="be_FileStoreFiles" Type="Self.be_FileStoreFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="be_FileStoreDirectory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="be_FileStoreFiles">
+              <PropertyRef Name="ParentDirectoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_be_FileStoreFileThumbs_be_FileStoreFiles">
+          <End Role="be_FileStoreFiles" Type="Self.be_FileStoreFiles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="be_FileStoreFileThumbs" Type="Self.be_FileStoreFileThumbs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="be_FileStoreFiles">
+              <PropertyRef Name="FileID" />
+            </Principal>
+            <Dependent Role="be_FileStoreFileThumbs">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_70371_blogengineModelStoreContainer">
+          <EntitySet Name="be_BlogRollItems" EntityType="Self.be_BlogRollItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Blogs" EntityType="Self.be_Blogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Categories" EntityType="Self.be_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_DataStoreSettings" EntityType="Self.be_DataStoreSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_FileStoreDirectory" EntityType="Self.be_FileStoreDirectory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_FileStoreFiles" EntityType="Self.be_FileStoreFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_FileStoreFileThumbs" EntityType="Self.be_FileStoreFileThumbs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_PackageFiles" EntityType="Self.be_PackageFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Packages" EntityType="Self.be_Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Pages" EntityType="Self.be_Pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_PingService" EntityType="Self.be_PingService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_PostCategory" EntityType="Self.be_PostCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_PostComment" EntityType="Self.be_PostComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_PostNotify" EntityType="Self.be_PostNotify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Posts" EntityType="Self.be_Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_PostTag" EntityType="Self.be_PostTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Profiles" EntityType="Self.be_Profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_QuickNotes" EntityType="Self.be_QuickNotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_QuickSettings" EntityType="Self.be_QuickSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Referrers" EntityType="Self.be_Referrers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_RightRoles" EntityType="Self.be_RightRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Rights" EntityType="Self.be_Rights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Roles" EntityType="Self.be_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Settings" EntityType="Self.be_Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_StopWords" EntityType="Self.be_StopWords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_UserRoles" EntityType="Self.be_UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_Users" EntityType="Self.be_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="be_CustomFields" EntityType="Self.be_CustomFields" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[be_CustomFields].[CustomType] AS [CustomType], 
+[be_CustomFields].[ObjectId] AS [ObjectId], 
+[be_CustomFields].[BlogId] AS [BlogId], 
+[be_CustomFields].[Key] AS [Key], 
+[be_CustomFields].[Value] AS [Value], 
+[be_CustomFields].[Attribute] AS [Attribute]
+FROM [dbo].[be_CustomFields] AS [be_CustomFields]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_be_FileStoreFiles_be_FileStoreDirectory" Association="Self.FK_be_FileStoreFiles_be_FileStoreDirectory">
+            <End Role="be_FileStoreDirectory" EntitySet="be_FileStoreDirectory" />
+            <End Role="be_FileStoreFiles" EntitySet="be_FileStoreFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_be_FileStoreFileThumbs_be_FileStoreFiles" Association="Self.FK_be_FileStoreFileThumbs_be_FileStoreFiles">
+            <End Role="be_FileStoreFiles" EntitySet="be_FileStoreFiles" />
+            <End Role="be_FileStoreFileThumbs" EntitySet="be_FileStoreFileThumbs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BlogEngineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="be_BlogRollItems">
+          <Key>
+            <PropertyRef Name="BlogRollRowId" />
+          </Key>
+          <Property Name="BlogRollRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="BlogRollId" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FeedUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Xfn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SortIndex" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Blogs">
+          <Key>
+            <PropertyRef Name="BlogRowId" />
+          </Key>
+          <Property Name="BlogRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="BlogName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hostname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAnyTextBeforeHostnameAccepted" Type="Boolean" Nullable="false" />
+          <Property Name="StorageContainerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VirtualPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsSiteAggregation" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Categories">
+          <Key>
+            <PropertyRef Name="CategoryRowID" />
+          </Key>
+          <Property Name="CategoryRowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="CategoryID" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="be_DataStoreSettings">
+          <Key>
+            <PropertyRef Name="DataStoreSettingRowId" />
+          </Key>
+          <Property Name="DataStoreSettingRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="ExtensionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtensionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_FileStoreDirectory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ParentID" Type="Guid" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAccess" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModify" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="be_FileStoreFiles" Relationship="Self.FK_be_FileStoreFiles_be_FileStoreDirectory" FromRole="be_FileStoreDirectory" ToRole="be_FileStoreFiles" />
+        </EntityType>
+        <EntityType Name="be_FileStoreFiles">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="Guid" Nullable="false" />
+          <Property Name="ParentDirectoryID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contents" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAccess" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModify" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="be_FileStoreDirectory" Relationship="Self.FK_be_FileStoreFiles_be_FileStoreDirectory" FromRole="be_FileStoreFiles" ToRole="be_FileStoreDirectory" />
+          <NavigationProperty Name="be_FileStoreFileThumbs" Relationship="Self.FK_be_FileStoreFileThumbs_be_FileStoreFiles" FromRole="be_FileStoreFiles" ToRole="be_FileStoreFileThumbs" />
+        </EntityType>
+        <EntityType Name="be_FileStoreFileThumbs">
+          <Key>
+            <PropertyRef Name="thumbnailId" />
+          </Key>
+          <Property Name="thumbnailId" Type="Guid" Nullable="false" />
+          <Property Name="FileId" Type="Guid" Nullable="false" />
+          <Property Name="size" Type="Int32" Nullable="false" />
+          <Property Name="contents" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="be_FileStoreFiles" Relationship="Self.FK_be_FileStoreFileThumbs_be_FileStoreFiles" FromRole="be_FileStoreFileThumbs" ToRole="be_FileStoreFiles" />
+        </EntityType>
+        <EntityType Name="be_PackageFiles">
+          <Key>
+            <PropertyRef Name="PackageId" />
+            <PropertyRef Name="FileOrder" />
+          </Key>
+          <Property Name="PackageId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileOrder" Type="Int32" Nullable="false" />
+          <Property Name="FilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDirectory" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Packages">
+          <Key>
+            <PropertyRef Name="PackageId" />
+          </Key>
+          <Property Name="PackageId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Pages">
+          <Key>
+            <PropertyRef Name="PageRowID" />
+          </Key>
+          <Property Name="PageRowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="PageID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="IsPublished" Type="Boolean" />
+          <Property Name="IsFrontPage" Type="Boolean" />
+          <Property Name="Parent" Type="Guid" />
+          <Property Name="ShowInList" Type="Boolean" />
+          <Property Name="Slug" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PingService">
+          <Key>
+            <PropertyRef Name="PingServiceID" />
+          </Key>
+          <Property Name="PingServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="be_PostCategory">
+          <Key>
+            <PropertyRef Name="PostCategoryID" />
+          </Key>
+          <Property Name="PostCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="PostID" Type="Guid" Nullable="false" />
+          <Property Name="CategoryID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PostComment">
+          <Key>
+            <PropertyRef Name="PostCommentRowID" />
+          </Key>
+          <Property Name="PostCommentRowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="PostCommentID" Type="Guid" Nullable="false" />
+          <Property Name="PostID" Type="Guid" Nullable="false" />
+          <Property Name="ParentCommentID" Type="Guid" Nullable="false" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="ModeratedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsSpam" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PostNotify">
+          <Key>
+            <PropertyRef Name="PostNotifyID" />
+          </Key>
+          <Property Name="PostNotifyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="PostID" Type="Guid" Nullable="false" />
+          <Property Name="NotifyAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="be_Posts">
+          <Key>
+            <PropertyRef Name="PostRowID" />
+          </Key>
+          <Property Name="PostRowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="PostID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublished" Type="Boolean" />
+          <Property Name="IsCommentEnabled" Type="Boolean" />
+          <Property Name="Raters" Type="Int32" />
+          <Property Name="Rating" Type="Single" />
+          <Property Name="Slug" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_PostTag">
+          <Key>
+            <PropertyRef Name="PostTagID" />
+          </Key>
+          <Property Name="PostTagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="PostID" Type="Guid" Nullable="false" />
+          <Property Name="Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="be_Profiles">
+          <Key>
+            <PropertyRef Name="ProfileID" />
+          </Key>
+          <Property Name="ProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SettingName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SettingValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="be_QuickNotes">
+          <Key>
+            <PropertyRef Name="QuickNoteID" />
+          </Key>
+          <Property Name="QuickNoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteID" Type="Guid" Nullable="false" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Updated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="be_QuickSettings">
+          <Key>
+            <PropertyRef Name="QuickSettingID" />
+          </Key>
+          <Property Name="QuickSettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SettingName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SettingValue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Referrers">
+          <Key>
+            <PropertyRef Name="ReferrerRowId" />
+          </Key>
+          <Property Name="ReferrerRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="ReferrerId" Type="Guid" Nullable="false" />
+          <Property Name="ReferralDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReferrerUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReferralCount" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsSpam" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="be_RightRoles">
+          <Key>
+            <PropertyRef Name="RightRoleRowId" />
+          </Key>
+          <Property Name="RightRoleRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="RightName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Rights">
+          <Key>
+            <PropertyRef Name="RightRowId" />
+          </Key>
+          <Property Name="RightRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="RightName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Settings">
+          <Key>
+            <PropertyRef Name="SettingRowId" />
+          </Key>
+          <Property Name="SettingRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="SettingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SettingValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="be_StopWords">
+          <Key>
+            <PropertyRef Name="StopWordRowId" />
+          </Key>
+          <Property Name="StopWordRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="StopWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_UserRoles">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="be_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="be_CustomFields">
+          <Key>
+            <PropertyRef Name="CustomType" />
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="BlogId" />
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="CustomType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ObjectId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BlogId" Type="Guid" Nullable="false" />
+          <Property Name="Key" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Attribute" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_be_FileStoreFiles_be_FileStoreDirectory">
+          <End Role="be_FileStoreDirectory" Type="Self.be_FileStoreDirectory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="be_FileStoreFiles" Type="Self.be_FileStoreFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="be_FileStoreDirectory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="be_FileStoreFiles">
+              <PropertyRef Name="ParentDirectoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_be_FileStoreFileThumbs_be_FileStoreFiles">
+          <End Role="be_FileStoreFiles" Type="Self.be_FileStoreFiles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="be_FileStoreFileThumbs" Type="Self.be_FileStoreFileThumbs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="be_FileStoreFiles">
+              <PropertyRef Name="FileID" />
+            </Principal>
+            <Dependent Role="be_FileStoreFileThumbs">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BlogEngineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="be_BlogRollItems" EntityType="Self.be_BlogRollItems" />
+          <EntitySet Name="be_Blogs" EntityType="Self.be_Blogs" />
+          <EntitySet Name="be_Categories" EntityType="Self.be_Categories" />
+          <EntitySet Name="be_DataStoreSettings" EntityType="Self.be_DataStoreSettings" />
+          <EntitySet Name="be_FileStoreDirectory" EntityType="Self.be_FileStoreDirectory" />
+          <EntitySet Name="be_FileStoreFiles" EntityType="Self.be_FileStoreFiles" />
+          <EntitySet Name="be_FileStoreFileThumbs" EntityType="Self.be_FileStoreFileThumbs" />
+          <EntitySet Name="be_PackageFiles" EntityType="Self.be_PackageFiles" />
+          <EntitySet Name="be_Packages" EntityType="Self.be_Packages" />
+          <EntitySet Name="be_Pages" EntityType="Self.be_Pages" />
+          <EntitySet Name="be_PingService" EntityType="Self.be_PingService" />
+          <EntitySet Name="be_PostCategory" EntityType="Self.be_PostCategory" />
+          <EntitySet Name="be_PostComment" EntityType="Self.be_PostComment" />
+          <EntitySet Name="be_PostNotify" EntityType="Self.be_PostNotify" />
+          <EntitySet Name="be_Posts" EntityType="Self.be_Posts" />
+          <EntitySet Name="be_PostTag" EntityType="Self.be_PostTag" />
+          <EntitySet Name="be_Profiles" EntityType="Self.be_Profiles" />
+          <EntitySet Name="be_QuickNotes" EntityType="Self.be_QuickNotes" />
+          <EntitySet Name="be_QuickSettings" EntityType="Self.be_QuickSettings" />
+          <EntitySet Name="be_Referrers" EntityType="Self.be_Referrers" />
+          <EntitySet Name="be_RightRoles" EntityType="Self.be_RightRoles" />
+          <EntitySet Name="be_Rights" EntityType="Self.be_Rights" />
+          <EntitySet Name="be_Roles" EntityType="Self.be_Roles" />
+          <EntitySet Name="be_Settings" EntityType="Self.be_Settings" />
+          <EntitySet Name="be_StopWords" EntityType="Self.be_StopWords" />
+          <EntitySet Name="be_UserRoles" EntityType="Self.be_UserRoles" />
+          <EntitySet Name="be_Users" EntityType="Self.be_Users" />
+          <EntitySet Name="be_CustomFields" EntityType="Self.be_CustomFields" />
+          <AssociationSet Name="FK_be_FileStoreFiles_be_FileStoreDirectory" Association="Self.FK_be_FileStoreFiles_be_FileStoreDirectory">
+            <End Role="be_FileStoreDirectory" EntitySet="be_FileStoreDirectory" />
+            <End Role="be_FileStoreFiles" EntitySet="be_FileStoreFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_be_FileStoreFileThumbs_be_FileStoreFiles" Association="Self.FK_be_FileStoreFileThumbs_be_FileStoreFiles">
+            <End Role="be_FileStoreFiles" EntitySet="be_FileStoreFiles" />
+            <End Role="be_FileStoreFileThumbs" EntitySet="be_FileStoreFileThumbs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_70371_blogengineModelStoreContainer" CdmEntityContainer="BlogEngineEntities">
+          <EntitySetMapping Name="be_BlogRollItems">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_BlogRollItems">
+              <MappingFragment StoreEntitySet="be_BlogRollItems">
+                <ScalarProperty Name="BlogRollRowId" ColumnName="BlogRollRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogRollId" ColumnName="BlogRollId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BlogUrl" ColumnName="BlogUrl" />
+                <ScalarProperty Name="FeedUrl" ColumnName="FeedUrl" />
+                <ScalarProperty Name="Xfn" ColumnName="Xfn" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Blogs">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Blogs">
+              <MappingFragment StoreEntitySet="be_Blogs">
+                <ScalarProperty Name="BlogRowId" ColumnName="BlogRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogName" ColumnName="BlogName" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="IsAnyTextBeforeHostnameAccepted" ColumnName="IsAnyTextBeforeHostnameAccepted" />
+                <ScalarProperty Name="StorageContainerName" ColumnName="StorageContainerName" />
+                <ScalarProperty Name="VirtualPath" ColumnName="VirtualPath" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsSiteAggregation" ColumnName="IsSiteAggregation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Categories">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Categories">
+              <MappingFragment StoreEntitySet="be_Categories">
+                <ScalarProperty Name="CategoryRowID" ColumnName="CategoryRowID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_DataStoreSettings">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_DataStoreSettings">
+              <MappingFragment StoreEntitySet="be_DataStoreSettings">
+                <ScalarProperty Name="DataStoreSettingRowId" ColumnName="DataStoreSettingRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="ExtensionType" ColumnName="ExtensionType" />
+                <ScalarProperty Name="ExtensionId" ColumnName="ExtensionId" />
+                <ScalarProperty Name="Settings" ColumnName="Settings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_FileStoreDirectory">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_FileStoreDirectory">
+              <MappingFragment StoreEntitySet="be_FileStoreDirectory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
+                <ScalarProperty Name="LastModify" ColumnName="LastModify" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_FileStoreFiles">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_FileStoreFiles">
+              <MappingFragment StoreEntitySet="be_FileStoreFiles">
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="ParentDirectoryID" ColumnName="ParentDirectoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
+                <ScalarProperty Name="LastModify" ColumnName="LastModify" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_FileStoreFileThumbs">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_FileStoreFileThumbs">
+              <MappingFragment StoreEntitySet="be_FileStoreFileThumbs">
+                <ScalarProperty Name="thumbnailId" ColumnName="thumbnailId" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="contents" ColumnName="contents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_PackageFiles">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_PackageFiles">
+              <MappingFragment StoreEntitySet="be_PackageFiles">
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="FileOrder" ColumnName="FileOrder" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="IsDirectory" ColumnName="IsDirectory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Packages">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Packages">
+              <MappingFragment StoreEntitySet="be_Packages">
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Pages">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Pages">
+              <MappingFragment StoreEntitySet="be_Pages">
+                <ScalarProperty Name="PageRowID" ColumnName="PageRowID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PageContent" ColumnName="PageContent" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="IsFrontPage" ColumnName="IsFrontPage" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="ShowInList" ColumnName="ShowInList" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_PingService">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_PingService">
+              <MappingFragment StoreEntitySet="be_PingService">
+                <ScalarProperty Name="PingServiceID" ColumnName="PingServiceID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_PostCategory">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_PostCategory">
+              <MappingFragment StoreEntitySet="be_PostCategory">
+                <ScalarProperty Name="PostCategoryID" ColumnName="PostCategoryID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_PostComment">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_PostComment">
+              <MappingFragment StoreEntitySet="be_PostComment">
+                <ScalarProperty Name="PostCommentRowID" ColumnName="PostCommentRowID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="PostCommentID" ColumnName="PostCommentID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="ParentCommentID" ColumnName="ParentCommentID" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ModeratedBy" ColumnName="ModeratedBy" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="IsSpam" ColumnName="IsSpam" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_PostNotify">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_PostNotify">
+              <MappingFragment StoreEntitySet="be_PostNotify">
+                <ScalarProperty Name="PostNotifyID" ColumnName="PostNotifyID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="NotifyAddress" ColumnName="NotifyAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Posts">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Posts">
+              <MappingFragment StoreEntitySet="be_Posts">
+                <ScalarProperty Name="PostRowID" ColumnName="PostRowID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="IsCommentEnabled" ColumnName="IsCommentEnabled" />
+                <ScalarProperty Name="Raters" ColumnName="Raters" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_PostTag">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_PostTag">
+              <MappingFragment StoreEntitySet="be_PostTag">
+                <ScalarProperty Name="PostTagID" ColumnName="PostTagID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Profiles">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Profiles">
+              <MappingFragment StoreEntitySet="be_Profiles">
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SettingName" ColumnName="SettingName" />
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_QuickNotes">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_QuickNotes">
+              <MappingFragment StoreEntitySet="be_QuickNotes">
+                <ScalarProperty Name="QuickNoteID" ColumnName="QuickNoteID" />
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_QuickSettings">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_QuickSettings">
+              <MappingFragment StoreEntitySet="be_QuickSettings">
+                <ScalarProperty Name="QuickSettingID" ColumnName="QuickSettingID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SettingName" ColumnName="SettingName" />
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Referrers">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Referrers">
+              <MappingFragment StoreEntitySet="be_Referrers">
+                <ScalarProperty Name="ReferrerRowId" ColumnName="ReferrerRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="ReferrerId" ColumnName="ReferrerId" />
+                <ScalarProperty Name="ReferralDay" ColumnName="ReferralDay" />
+                <ScalarProperty Name="ReferrerUrl" ColumnName="ReferrerUrl" />
+                <ScalarProperty Name="ReferralCount" ColumnName="ReferralCount" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="IsSpam" ColumnName="IsSpam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_RightRoles">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_RightRoles">
+              <MappingFragment StoreEntitySet="be_RightRoles">
+                <ScalarProperty Name="RightRoleRowId" ColumnName="RightRoleRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="RightName" ColumnName="RightName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Rights">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Rights">
+              <MappingFragment StoreEntitySet="be_Rights">
+                <ScalarProperty Name="RightRowId" ColumnName="RightRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="RightName" ColumnName="RightName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Roles">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Roles">
+              <MappingFragment StoreEntitySet="be_Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Settings">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Settings">
+              <MappingFragment StoreEntitySet="be_Settings">
+                <ScalarProperty Name="SettingRowId" ColumnName="SettingRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="SettingName" ColumnName="SettingName" />
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_StopWords">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_StopWords">
+              <MappingFragment StoreEntitySet="be_StopWords">
+                <ScalarProperty Name="StopWordRowId" ColumnName="StopWordRowId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="StopWord" ColumnName="StopWord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_UserRoles">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_UserRoles">
+              <MappingFragment StoreEntitySet="be_UserRoles">
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_Users">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_Users">
+              <MappingFragment StoreEntitySet="be_Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="be_CustomFields">
+            <EntityTypeMapping TypeName="BlogEngineModel.be_CustomFields">
+              <MappingFragment StoreEntitySet="be_CustomFields">
+                <ScalarProperty Name="CustomType" ColumnName="CustomType" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

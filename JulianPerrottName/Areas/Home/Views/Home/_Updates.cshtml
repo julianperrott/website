@@ -1,0 +1,33 @@
+﻿<div class="col-md-4">
+    <div class="block-header">
+        <h2>
+            <span class="title">Last Updates</span><span class="decoration"></span><span class="decoration"></span><span class="decoration"></span>
+        </h2>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#blog" data-toggle="tab">My Blog</a></li>
+        <li><a href="#news" data-toggle="tab">News</a></li>
+        <li><a href="#events" data-toggle="tab">Events</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="blog">
+            <div class="partialContents" data-url="@Url.Action("BlogSummary","Home",new { area = "Home" })">
+                <img src="@Url.Content("~/Areas/Home/img/indicator.white.gif")" /> Loading ...
+            </div>
+        </div>
+        <div class="tab-pane" id="news">
+            <div class="tab-pane">
+                <div class="partialContents" data-url="@Url.Action("News","Home",new { area = "Home" })">
+                    <img src="@Url.Content("~/Areas/Home/img/indicator.white.gif")" /> Loading ...
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="events">
+            <div class="tab-pane active">
+                <div class="partialContents" data-url="@Url.Action("Events","Home",new { area = "Home" })">
+                    <img src="@Url.Content("~/Areas/Home/img/indicator.white.gif")" /> Loading ...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

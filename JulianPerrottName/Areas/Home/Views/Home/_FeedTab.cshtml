@@ -1,0 +1,16 @@
+﻿@model JulianPerrottName.Areas.Home.Models.FeedTabViewModel
+
+@{
+    Layout = null;
+}
+
+@if (Model.Items == null || Model.Items.Count() == 0)
+{
+    <p>No content found.</p>
+}
+else
+{
+    @Html.DisplayFor(model => model.Items);
+}
+
+<a href="@Model.LinkUrl" target="_blank" class="read-more">@Model.LinkText</a>

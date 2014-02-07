@@ -1,0 +1,12 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    @Html.Partial("_Head")
+    <body>
+        @Html.Partial("_Navbar")
+        @RenderBody()
+        @Html.Partial("_Footer")
+        @Html.Partial("_Legal")
+        @Html.Partial("_Scripts")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

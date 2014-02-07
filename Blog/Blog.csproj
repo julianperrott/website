@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48261F78-6CA6-4053-9569-74C4B6D8DD0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Blog</RootNamespace>
+    <AssemblyName>Blog</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="be_BlogRollItems.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Blogs.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Categories.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_CustomFields.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_DataStoreSettings.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_FileStoreDirectory.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_FileStoreFiles.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_FileStoreFileThumbs.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_PackageFiles.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Packages.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Pages.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_PingService.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_PostCategory.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_PostComment.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_PostNotify.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Posts.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_PostTag.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Profiles.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_QuickNotes.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_QuickSettings.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Referrers.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_RightRoles.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Rights.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Roles.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Settings.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_StopWords.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_UserRoles.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_Users.cs">
+      <DependentUpon>BeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="BeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="BeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BeModel.edmx</DependentUpon>
+      <LastGenOutput>BeModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="BeModel.edmx.diagram">
+      <DependentUpon>BeModel.edmx</DependentUpon>
+    </None>
+    <None Include="BeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BeModel.edmx</DependentUpon>
+      <LastGenOutput>BeModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

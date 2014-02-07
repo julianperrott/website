@@ -18,7 +18,8 @@
         {
             var container = new UnityContainer();
 
-            container.RegisterType<IBlogRepository, BlogRepository>();
+            container.RegisterType<IBlogRepository, Repository>();
+            container.RegisterType<IFeedReader, Repository>();
 
             return container;
         }
