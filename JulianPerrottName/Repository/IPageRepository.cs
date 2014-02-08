@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using JulianPerrottName.Models;
 
-    public interface IBlogRepository
+    public interface IPageRepository
     {
-        List<PageSummary> GetRecentBlogPosts();
+        List<PageSummary> GetRecentPagePosts();
     }
 }

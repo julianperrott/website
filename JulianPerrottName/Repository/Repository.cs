@@ -6,13 +6,13 @@
     using JulianPerrottName.Cache;
     using JulianPerrottName.Models;
 
-    public class Repository : Cache, IBlogRepository, IFeedReader
+    public class Repository : Cache, IBlogRepository, IFeedReader, IPageRepository
     {
         private const string SITE = "http://www.codesin.net";
 
-        public List<BlogPostSummary> GetRecentBlogPosts()
+        public List<PageSummary> GetRecentBlogPosts()
         {
-            return this.GetUsingCacheKey<List<BlogPostSummary>>(
+            return this.GetUsingCacheKey<List<PageSummary>>(
                MethodBase.GetCurrentMethod().Name,
                 () => new BlogReader().GetRecentBlogPosts(),
                 CacheForOneHour);
@@ -23,6 +23,14 @@
             return this.GetUsingCacheKey<List<SyndicationItem>>(
                MethodBase.GetCurrentMethod().Name + "_" + url,
                 () => new FeedReader().LoadFeed(url),
+                CacheForOneHour);
+        }
+
+        public List<PageSummary> GetRecentPagePosts()
+        {
+            return this.GetUsingCacheKey<List<PageSummary>>(
+               MethodBase.GetCurrentMethod().Name,
+                () => new BlogReader().GetRecentPagePosts(),
                 CacheForOneHour);
         }
     }

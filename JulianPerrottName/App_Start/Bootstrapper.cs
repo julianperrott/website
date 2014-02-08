@@ -20,6 +20,7 @@
 
             container.RegisterType<IBlogRepository, Repository>();
             container.RegisterType<IFeedReader, Repository>();
+            container.RegisterType<IPageRepository, Repository>();
 
             return container;
         }

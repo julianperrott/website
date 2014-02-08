@@ -16,11 +16,13 @@
     {
         private readonly IBlogRepository blogRepository;
         private readonly IFeedReader feedReader;
+        private readonly IPageRepository pageRepository;
 
-        public HomeController(IBlogRepository blogRepository,IFeedReader feedReader)
+        public HomeController(IBlogRepository blogRepository, IFeedReader feedReader, IPageRepository pageRepository)
         {
             this.blogRepository = blogRepository;
             this.feedReader = feedReader;
+            this.pageRepository = pageRepository;
         }
 
         public ActionResult Index()
@@ -30,8 +32,14 @@
 
         public ActionResult BlogSummary()
         {
-            List<BlogPostSummary> blogs = blogRepository.GetRecentBlogPosts();
-            return this.View(blogs);
+            var blogs = blogRepository.GetRecentBlogPosts();
+            return this.View("_BlogSummary",blogs);
+        }
+
+        public ActionResult ProjectSummary()
+        {
+            var blogs = pageRepository.GetRecentPagePosts();
+            return this.View("_ProjectSummary", blogs);
         }
 
         public ActionResult Events()

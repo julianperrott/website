@@ -183,9 +183,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BlogPostSummary.cs" />
+    <Compile Include="Models\PageSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BlogReader.cs" />
+    <Compile Include="Repository\IPageRepository.cs" />
     <Compile Include="Repository\ProxyFeedReader.cs" />
     <Compile Include="Repository\HtmlParser.cs" />
     <Compile Include="Repository\IBlogRepository.cs" />
@@ -215,6 +216,7 @@
     <Content Include="Areas\Home\img\face4.jpg" />
     <Content Include="Areas\Home\img\falling-leafs.png" />
     <Content Include="Areas\Home\img\favicon.ico" />
+    <Content Include="Areas\Home\img\ideas.jpg" />
     <Content Include="Areas\Home\img\iMac.png" />
     <Content Include="Areas\Home\img\indicator.white.gif" />
     <Content Include="Areas\Home\img\iPad.png" />
@@ -245,6 +247,7 @@
     <Content Include="Areas\Home\Views\Home\_Showcase.cshtml" />
     <Content Include="Areas\Home\Views\Home\_Updates.cshtml" />
     <Content Include="Areas\Home\Views\Home\_Welcome.cshtml" />
+    <Content Include="Areas\Home\Views\Home\_ProjectSummary.cshtml" />
     <None Include="BlogEngine\Admin\Reset.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -260,7 +263,6 @@
     <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Home\Views\Shared\_Scripts.cshtml" />
     <Content Include="Areas\Home\js\jquery-1.9.1.min.map" />
-    <Content Include="Areas\Home\Views\Shared\DisplayTemplates\BlogPostSummary.cshtml" />
     <Content Include="Areas\Home\Views\Home\_BlogSummary.cshtml" />
     <None Include="Areas\Home\Views\Web.config">
       <SubType>Designer</SubType>
