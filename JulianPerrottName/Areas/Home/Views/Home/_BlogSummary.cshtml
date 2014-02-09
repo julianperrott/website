@@ -1,5 +1,4 @@
-﻿@using JulianPerrottName.Models;
-@model List<PageSummary>
+﻿@model List<JulianPerrottName.Models.BlogSummary>
 
 @{
     Layout = null;
@@ -14,7 +13,7 @@ else
     foreach (var summary in Model)
     {
         <div class="media">
-            <a class="pull-left" href="#">
+            <a class="pull-left" href="@summary.Url(this.Request.RequestContext)">
                 <img class="media-object" src="@summary.Image" alt="Blog Message">
             </a>
             <div class="media-body">
@@ -25,4 +24,4 @@ else
     }
 }
 
-<a href="#" class="read-more">Read more stories...</a>
+<a href="http://www.codesin.net/blogengine/" class="read-more">Read more stories...</a>

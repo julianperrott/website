@@ -1,4 +1,5 @@
-﻿@{
+﻿@model JulianPerrottName.Areas.Home.Models.PageViewModel
+@{
     ViewBag.Title = "Blog Post";
 }
 
@@ -17,30 +18,47 @@
         <div class="row">
             <div class="col-sm-8">
                 <!-- Blog Post -->
-                <h4><a href="blog-post.html">HighLand - a new responsive Bootstrap 3 template</a></h4>
-                <ul class="text-muted list-inline">
-                    <li><i class="fa fa-user"></i> <a href="profile.html">Administrator</a></li>
-                    <li><i class="fa fa-calendar"></i> November 10, 2013</li>
-                    <li><i class="fa fa-comments-o"></i> 21 comments</li>
-                </ul>
-                <hr>
-                <p class="blog-text">
-                    <img class="pull-right img-responsive blog-img" alt="..." src="@Url.Content("~/Areas/Home/img/works1.jpg")">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur urna at neque mollis sagittis. Vivamus viverra justo in dui vulputate tincidunt in eu magna. Ut ut risus pretium, varius felis a, congue metus. Nam aliquam pretium eros, et venenatis sapien porttitor at. Nunc bibendum ipsum sit amet euismod sodales. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam varius justo sed velit dictum feugiat. Sed tempus eros quis eleifend posuere. Fusce tempus euismod sem vitae porta. Vestibulum eget mi suscipit, ultrices turpis quis, ultricies ipsum. Pellentesque et facilisis odio. Vivamus et mauris consequat, rhoncus risus vitae, porttitor dui.
-                    <br /><br />
-                    Maecenas non laoreet ipsum, id mattis nunc. Vestibulum viverra sapien a porta venenatis. Morbi in dignissim quam, eu malesuada lorem. Integer quis cursus ligula. Proin elementum, massa egestas rhoncus blandit, tortor mauris pellentesque eros, eget volutpat ligula nunc quis sapien. Integer eget cursus turpis. Sed non aliquam odio. Nullam et arcu sed felis interdum aliquam. Fusce euismod, mauris non lacinia porttitor, enim tortor porttitor diam, sit amet fringilla felis orci bibendum erat. Praesent lectus mauris, volutpat eu blandit auctor, varius faucibus est.
-                </p>
+                <div>
+
+                    <h4><a href="blog-post.html">@Model.Post.Title</a></h4>
+                    <ul class="text-muted list-inline">
+                        <li><i class="fa fa-user"></i> <a href="profile.html">Julian Perrott</a></li>
+                        <li><i class="fa fa-calendar"></i> @Model.Post.DateCreated.Value.ToString("MMMM d, yyyy")</li>
+                        <li><i class="fa fa-comments-o"></i> @Model.Comments.Count comments</li>
+                    </ul>
+                    <hr>
+                    <p class="blog-text">
+                        @Html.Raw(Model.Post.PostContent)
+                    </p>
+
+                </div>
+
                 <!-- New comment form -->
                 <div class="new-comment">
                     <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <div class="col-sm-2 hidden-xs">
-                                <img src="@Url.Content("~/Areas/Home/img/face1.jpg")" alt="..." class="img-responsive">
+
+                
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="txtName">Name *</label>
+                                <div class="col-md-10">
+                                    <input name="txtName" class="form-control" id="txtName" type="text">
+                                </div>
                             </div>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" rows="3" placeholder="Leave a message..."></textarea>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="txtEmail">E-mail</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" id="txtEmail" type="text">
+                                    <span id="gravatarmsg"></span>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="form-group" id="commentCompose" style="display: block;">
+                                <label class="col-md-2 control-label" for="txtContent">Comment *</label>
+                                <div class="col-md-10">
+                                    <textarea name="txtContent" class="form-control" id="txtContent" rows="6" cols="50" placeholder="Leave a message..."></textarea>
+                                </div>
+                            </div>
+
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="hl-btn hl-btn-dark hl-btn-sm">Post comment</button>
@@ -54,7 +72,7 @@
                 <div class="comment">
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="@Url.Content("~/Areas/Home/img/face2.jpg")" alt="...">
+                            <i class="fa fa-comments fa-4x"></i>
                         </a>
                         <div class="media-body">
                             <p><a href="profile.html">Username</a></p>
@@ -71,7 +89,7 @@
                 <div class="comment">
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="@Url.Content("~/Areas/Home/img/face3.jpg")" alt="...">
+                            <i class="fa fa-comments fa-4x"></i>
                         </a>
                         <div class="media-body">
                             <p><a href="profile.html">Username 2</a></p>
@@ -88,7 +106,7 @@
                 <div class="comment">
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="@Url.Content("~/Areas/Home/img/face4.jpg")" alt="...">
+                            <i class="fa fa-comments fa-4x"></i>
                         </a>
                         <div class="media-body">
                             <p><a href="profile.html">Username 3</a></p>

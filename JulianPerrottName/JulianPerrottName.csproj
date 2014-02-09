@@ -176,6 +176,7 @@
     <Compile Include="Areas\Home\Controllers\HomeController.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Home\Models\FeedTabViewModel.cs" />
+    <Compile Include="Areas\Home\Models\PageViewModel.cs" />
     <Compile Include="Cache\Cache.cs" />
     <Compile Include="Cache\CachedItem.cs" />
     <Compile Include="Cache\HttpRuntimeCache.cs" />

@@ -14,7 +14,7 @@
         {
             try
             {
-                return LoadFeedWithProxy(url);
+                return this.LoadFeedWithProxy(url);
             }
             catch (Exception)
             {

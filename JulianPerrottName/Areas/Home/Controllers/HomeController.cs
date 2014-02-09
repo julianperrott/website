@@ -1,13 +1,8 @@
 ﻿namespace JulianPerrottName.Areas.Home.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-    using System.Net;
-    using System.ServiceModel.Syndication;
     using System.Web.Mvc;
-    using System.Xml;
     using JulianPerrottName.Areas.Home.Models;
     using JulianPerrottName.Models;
     using JulianPerrottName.Repository;
@@ -32,14 +27,22 @@
 
         public ActionResult BlogSummary()
         {
-            var blogs = blogRepository.GetRecentBlogPosts();
-            return this.View("_BlogSummary",blogs);
+            var items = this.blogRepository.GetRecentBlogPosts();
+            return this.View("_BlogSummary", items);
         }
 
         public ActionResult ProjectSummary()
         {
-            var blogs = pageRepository.GetRecentPagePosts();
-            return this.View("_ProjectSummary", blogs);
+            var items = this.pageRepository.GetRecentPagePosts()
+                .Select(p => p as SummaryBase)
+                .ToList();
+
+            if (items.Count < 4)
+            {
+                items.AddRange(this.blogRepository.GetRecentBlogPosts());
+                items = items.Take(4).ToList();
+            };
+            return this.View("_ProjectSummary", items);
         }
 
         public ActionResult Events()
@@ -48,7 +51,7 @@
             {
                 LinkText = "See more events at Lanyrd...",
                 LinkUrl = "http://lanyrd.com/topics/software-development",
-                Items = feedReader.LoadFeed(@"http://lanyrd.com/topics/software-development/feed/").Take(3).ToList()
+                Items = this.feedReader.LoadFeed(@"http://lanyrd.com/topics/software-development/feed/").Take(3).ToList()
             };
 
             return this.View("_FeedTab", model);
@@ -60,7 +63,7 @@
             {
                 LinkText = "Read more stories at Y Combinator..",
                 LinkUrl = "https://news.ycombinator.com",
-                Items = feedReader.LoadFeed(@"https://news.ycombinator.com/rss").Take(3).ToList()
+                Items = this.feedReader.LoadFeed(@"https://news.ycombinator.com/rss").Take(3).ToList()
             };
 
             return this.View("_FeedTab", model);

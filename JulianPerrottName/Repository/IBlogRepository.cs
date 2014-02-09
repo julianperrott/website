@@ -5,6 +5,8 @@
 
     public interface IBlogRepository
     {
-        List<PageSummary> GetRecentBlogPosts();
+        List<BlogSummary> GetRecentBlogPosts();
+
+        Blog.be_Posts GetPost(System.Guid postId);
     }
 }

@@ -10,9 +10,9 @@
     {
         private const string SITE = "http://www.codesin.net";
 
-        public List<PageSummary> GetRecentBlogPosts()
+        public List<BlogSummary> GetRecentBlogPosts()
         {
-            return this.GetUsingCacheKey<List<PageSummary>>(
+            return this.GetUsingCacheKey<List<BlogSummary>>(
                MethodBase.GetCurrentMethod().Name,
                 () => new BlogReader().GetRecentBlogPosts(),
                 CacheForOneHour);
@@ -32,6 +32,11 @@
                MethodBase.GetCurrentMethod().Name,
                 () => new BlogReader().GetRecentPagePosts(),
                 CacheForOneHour);
+        }
+
+        public Blog.be_Posts GetPost(System.Guid postId)
+        {
+            return new BlogReader().GetPost(postId);
         }
     }
 }

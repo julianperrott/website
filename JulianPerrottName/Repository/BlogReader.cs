@@ -1,18 +1,16 @@
 ﻿namespace JulianPerrottName.Repository
 {
-    using Blog;
-    using JulianPerrottName.Cache;
-    using JulianPerrottName.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
+    using Blog;
+    using JulianPerrottName.Models;
 
-    public class BlogReader:IBlogRepository
+    public class BlogReader : IBlogRepository
     {
         private const string SITE = "http://www.codesin.net";
 
-        public List<PageSummary> GetRecentBlogPosts()
+        public List<BlogSummary> GetRecentBlogPosts()
         {
             var context = new BlogEngineEntities();
             be_Blogs blog = GetBlog(context);
@@ -25,24 +23,16 @@
                 .Take(3)
                 .ToList();
 
-            return ReadRecentBlogPosts(posts);
+            return this.ReadRecentBlogPosts(posts);
         }
 
-        private static be_Blogs GetBlog(BlogEngineEntities context)
+        public List<BlogSummary> ReadRecentBlogPosts(IEnumerable<be_Posts> posts)
         {
-            be_Blogs blog = context.be_Blogs.Where(b => b.BlogName == "Primary").FirstOrDefault();
-            if (blog == null) { throw new Exception("Failed to find 'Primary' Blog."); }
-            return blog;
-        }
-
-        public List<PageSummary> ReadRecentBlogPosts(IEnumerable<be_Posts> posts)
-        {
-            return posts.Select(p => new PageSummary()
+            return posts.Select(p => new BlogSummary()
             {
                 Description = p.Description,
-                PostID = p.PostID,
-                PostRowID = p.PostRowID,
-                Image = GetImageFromPost(p.PostContent),
+                PostId = p.PostID,
+                Image = this.GetImageFromPost(p.PostContent),
                 Title = p.Title
             })
             .ToList();
@@ -52,8 +42,15 @@
         {
             string image = HtmlParser.GetFirstTagAttribute(postContent, "img", "src");
 
-            if (string.IsNullOrEmpty(image)) { return string.Empty; }
-            if (image.Contains("www")) { return image; }
+            if (string.IsNullOrEmpty(image)) 
+            {
+                return string.Empty; 
+            }
+
+            if (image.Contains("www")) 
+            {
+                return image; 
+            }
 
             image = image.Replace(".axdx", string.Empty);
             image = image.Replace("FILES", "image.axd?picture=");
@@ -74,7 +71,7 @@
                 .Take(4)
                 .ToList();
 
-            return ReadRecentPagePosts(posts);
+            return this.ReadRecentPagePosts(posts);
         }
 
         public List<PageSummary> ReadRecentPagePosts(IEnumerable<be_Pages> posts)
@@ -82,12 +79,30 @@
             return posts.Select(p => new PageSummary()
             {
                 Description = p.Description,
-                PostID = p.PageID,
-                PostRowID = p.PageRowID,
-                Image = GetImageFromPost(p.PageContent),
+                PageId = p.PageID,
+                Image = this.GetImageFromPost(p.PageContent),
                 Title = p.Title
             })
             .ToList();
+        }
+
+        public be_Posts GetPost(Guid postId)
+        {
+            var context = new BlogEngineEntities();
+            return context.be_Posts
+                .Where(p => p.PostID == postId)
+                .FirstOrDefault();
+        }
+
+        private static be_Blogs GetBlog(BlogEngineEntities context)
+        {
+            be_Blogs blog = context.be_Blogs.Where(b => b.BlogName == "Primary").FirstOrDefault();
+            if (blog == null) 
+            { 
+                throw new Exception("Failed to find 'Primary' Blog.");
+            }
+
+            return blog;
         }
     }
 }
