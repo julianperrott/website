@@ -13,12 +13,15 @@ else
     foreach (var summary in Model)
     {
         <div class="media">
-            <a class="pull-left" href="@summary.Url(this.Request.RequestContext)">
+            <a class="pull-left" target="_blank" href="@summary.Url(this.Request.RequestContext)">
                 <img class="media-object" src="@summary.Image" alt="Blog Message">
             </a>
             <div class="media-body">
-                <h4 class="media-heading"><a href="#">@summary.Title</a></h4>
+                <h4 class="media-heading"><a target="_blank" href="@summary.Url(this.Request.RequestContext)">@summary.Title</a></h4>
                 @summary.Description
+                <div class="text-muted">
+                    <i class="fa fa-calendar"></i> @summary.DateCreated.Value.ToString("MMMM d, yyyy")
+                </div>
             </div>
         </div>
     }

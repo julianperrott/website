@@ -52,5 +52,11 @@
                 }
             }
         }
+
+
+        public List<SyndicationItem> LoadRss(string url)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

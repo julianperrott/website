@@ -6,5 +6,7 @@
     public interface IFeedReader
     {
         List<SyndicationItem> LoadFeed(string url);
+
+        List<SyndicationItem> LoadRss(string url);
     }
 }

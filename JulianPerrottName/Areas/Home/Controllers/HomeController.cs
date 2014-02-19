@@ -51,7 +51,7 @@
             {
                 LinkText = "See more events at Lanyrd...",
                 LinkUrl = "http://lanyrd.com/topics/software-development",
-                Items = this.feedReader.LoadFeed(@"http://lanyrd.com/topics/software-development/feed/").Take(3).ToList()
+                Items = this.feedReader.LoadFeed(@"http://lanyrd.com/topics/software-development/feed/").Take(50).ToList()
             };
 
             return this.View("_FeedTab", model);
@@ -63,7 +63,7 @@
             {
                 LinkText = "Read more stories at Y Combinator..",
                 LinkUrl = "https://news.ycombinator.com",
-                Items = this.feedReader.LoadFeed(@"https://news.ycombinator.com/rss").Take(3).ToList()
+                Items = this.feedReader.LoadRss(@"https://news.ycombinator.com/rss").Take(50).ToList()
             };
 
             return this.View("_FeedTab", model);

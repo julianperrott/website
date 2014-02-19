@@ -1,6 +1,7 @@
 ﻿namespace JulianPerrottName.Models
 {
     using System;
+    using System.Globalization;
     using System.Web.Mvc;
     using System.Web.Routing;
 
@@ -23,7 +24,9 @@
 
         public override string Url(RequestContext requestContext)
         {
-            return new UrlHelper(requestContext).Action("Post", "Blog", new { area = "Home", PostId });
+            string relativePath = string.Format("http://www.codesin.net/blogengine/post/{0}{1}.aspx", DateCreated.Value.ToString("yyyy/MM/dd/", CultureInfo.InvariantCulture), Slug);
+
+            return new UrlHelper(requestContext).Content(relativePath);
         }
     }
 

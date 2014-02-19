@@ -176,7 +176,6 @@
     <Compile Include="Areas\Home\Controllers\HomeController.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Home\Models\FeedTabViewModel.cs" />
-    <Compile Include="Areas\Home\Models\PageViewModel.cs" />
     <Compile Include="Cache\Cache.cs" />
     <Compile Include="Cache\CachedItem.cs" />
     <Compile Include="Cache\HttpRuntimeCache.cs" />
@@ -184,6 +183,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogPageViewModel.cs" />
     <Compile Include="Models\PageSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BlogReader.cs" />
@@ -238,6 +238,7 @@
     <Content Include="Areas\Home\Views\Error\Error404.cshtml" />
     <Content Include="Areas\Home\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Home\js\custom.js.map" />
+    <Content Include="Areas\Home\Views\Contact\Send.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Bubbles.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Item.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Text.cshtml" />
@@ -252,9 +253,6 @@
     <None Include="BlogEngine\Admin\Reset.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Html\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Html\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Html\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Home\Views\Shared\_Head.cshtml" />
     <Content Include="Areas\Home\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Home\Views\Shared\_Legal.cshtml" />
@@ -271,56 +269,14 @@
     <Content Include="Areas\Home\Views\Home\Index.cshtml" />
     <Content Include="BlogEngine\Web.config.txt" />
     <Content Include="BlogEngine\Web.sitemap" />
+    <Content Include="Html\images\worldmap.gif" />
+    <Content Include="Html\js\WrapSphereDemo.js.map" />
     <None Include="Properties\PublishProfiles\julianperrott.pubxml" />
-    <Content Include="Html\about-us.html" />
     <None Include="Areas\Home\Views\Blog\Post.cshtml" />
     <None Include="Areas\Home\Views\Blog\Timeline.cshtml" />
     <None Include="Areas\Home\Views\Blog\Index.cshtml" />
-    <Content Include="Html\css\animate.css" />
-    <Content Include="Html\css\bootstrap.css" />
-    <Content Include="Html\css\bootstrap.min.css" />
-    <Content Include="Html\css\custom.css" />
-    <Content Include="Html\css\elements.css" />
-    <Content Include="Html\edit-profile.html" />
-    <Content Include="Html\faq.html" />
-    <Content Include="Html\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Html\img\about.jpg" />
-    <Content Include="Html\img\bg3.jpg" />
-    <Content Include="Html\img\blank.jpg" />
-    <Content Include="Html\img\blog-1.jpg" />
-    <Content Include="Html\img\blog-2.jpg" />
-    <Content Include="Html\img\blog-3.jpg" />
-    <Content Include="Html\img\dots.jpg" />
-    <Content Include="Html\img\face1.jpg" />
-    <Content Include="Html\img\face2.jpg" />
-    <Content Include="Html\img\face3.jpg" />
-    <Content Include="Html\img\face4.jpg" />
-    <Content Include="Html\img\falling-leafs.png" />
-    <Content Include="Html\img\favicon.ico" />
-    <Content Include="Html\img\iMac.png" />
-    <Content Include="Html\img\iPad.png" />
-    <Content Include="Html\img\iPhone.png" />
-    <Content Include="Html\img\works1.jpg" />
-    <Content Include="Html\img\works2.jpg" />
-    <Content Include="Html\img\works2_big.jpg" />
-    <Content Include="Html\img\works3.jpg" />
-    <Content Include="Html\img\works3_big.jpg" />
-    <Content Include="Html\img\works4.jpg" />
-    <Content Include="Html\img\works4_big.jpg" />
-    <Content Include="Html\inbox-dialog.html" />
-    <Content Include="Html\inbox.html" />
-    <Content Include="Html\index.html" />
-    <Content Include="Html\js\bootstrap.js" />
-    <Content Include="Html\js\bootstrap.min.js" />
-    <Content Include="Html\js\custom.js" />
-    <Content Include="Html\js\scrolltopcontrol.js" />
-    <Content Include="Html\pricing.html" />
-    <Content Include="Html\profile.html" />
-    <Content Include="Html\README.txt" />
-    <Content Include="Html\sign-in.html" />
-    <Content Include="Html\sign-up.html" />
-    <Content Include="Html\team.html" />
-    <Content Include="Html\ui-elements.html" />
+    <Content Include="Html\js\WrapSphereDemo.js" />
+    <Content Include="Html\WrapSphereDemo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -341,6 +297,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Html\js\WrapSphereDemo.ts" />
     <TypeScriptCompile Include="Typescript Definitions\bootstrap.d.ts" />
     <TypeScriptCompile Include="Areas\Home\js\custom.ts" />
     <TypeScriptCompile Include="Typescript Definitions\jquery.d.ts" />

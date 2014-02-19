@@ -27,13 +27,7 @@
 
         public ActionResult Post(System.Guid postId)
         {
-            PageViewModel model = new PageViewModel()
-            {
-                Post = this.blogRepository.GetPost(postId),
-                Comments = new List<be_PostComment>(),
-                Tags = new List<be_PostTag>()
-            };
-
+            var model = this.blogRepository.GetPost(postId);
             return this.View(model);
         }
     }

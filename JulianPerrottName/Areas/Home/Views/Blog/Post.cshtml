@@ -1,4 +1,4 @@
-﻿@model JulianPerrottName.Areas.Home.Models.PageViewModel
+﻿@model JulianPerrottName.Models.BlogPageViewModel
 @{
     ViewBag.Title = "Blog Post";
 }
@@ -37,27 +37,27 @@
                 <div class="new-comment">
                     <form class="form-horizontal" role="form">
 
-                
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="txtName">Name *</label>
-                                <div class="col-md-10">
-                                    <input name="txtName" class="form-control" id="txtName" type="text">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="txtEmail">E-mail</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" id="txtEmail" type="text">
-                                    <span id="gravatarmsg"></span>
-                                </div>
-                            </div>
 
-                            <div class="form-group" id="commentCompose" style="display: block;">
-                                <label class="col-md-2 control-label" for="txtContent">Comment *</label>
-                                <div class="col-md-10">
-                                    <textarea name="txtContent" class="form-control" id="txtContent" rows="6" cols="50" placeholder="Leave a message..."></textarea>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="txtName">Name *</label>
+                            <div class="col-md-10">
+                                <input name="txtName" class="form-control" id="txtName" type="text">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="txtEmail">E-mail</label>
+                            <div class="col-md-10">
+                                <input class="form-control" id="txtEmail" type="text">
+                                <span id="gravatarmsg"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="commentCompose" style="display: block;">
+                            <label class="col-md-2 control-label" for="txtContent">Comment *</label>
+                            <div class="col-md-10">
+                                <textarea name="txtContent" class="form-control" id="txtContent" rows="6" cols="50" placeholder="Leave a message..."></textarea>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
@@ -67,63 +67,33 @@
                     </form>
                 </div>
                 <!-- Comments list -->
-                <h4>21 comments</h4>
+                <h4>@Model.Comments.Count comments</h4>
                 <hr>
-                <div class="comment">
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <i class="fa fa-comments fa-4x"></i>
-                        </a>
-                        <div class="media-body">
-                            <p><a href="profile.html">Username</a></p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur urna at neque mollis sagittis. Vivamus viverra justo in dui vulputate tincidunt in eu magna. Ut ut risus pretium, varius felis a, congue metus.
-                            </p>
-                            <ul class="text-muted list-inline">
-                                <li><i class="fa fa-clock-o"></i> 20 minutes ago</li>
-                                <li><i class="fa fa-cog"></i> <a href="#">Edit</a></li>
-                            </ul>
+
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="comment">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <i class="fa fa-comments fa-4x"></i>
+                            </a>
+                            <div class="media-body">
+                                <p>@comment.Author<</p>
+                                <p>
+                                    @comment.Comment
+                                </p>
+                                <ul class="text-muted list-inline">
+                                    <li><i class="fa fa-calendar"></i> @comment.CommentDate.ToString("MMMM d, yyyy")</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="comment">
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <i class="fa fa-comments fa-4x"></i>
-                        </a>
-                        <div class="media-body">
-                            <p><a href="profile.html">Username 2</a></p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur urna at neque mollis sagittis. Vivamus viverra justo in dui vulputate tincidunt in eu magna. Ut ut risus pretium, varius felis a, congue metus.
-                            </p>
-                            <ul class="text-muted list-inline">
-                                <li><i class="fa fa-clock-o"></i> 1 hour ago</li>
-                                <li><i class="fa fa-cog"></i> <a href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment">
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <i class="fa fa-comments fa-4x"></i>
-                        </a>
-                        <div class="media-body">
-                            <p><a href="profile.html">Username 3</a></p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur urna at neque mollis sagittis. Vivamus viverra justo in dui vulputate tincidunt in eu magna. Ut ut risus pretium, varius felis a, congue metus.
-                            </p>
-                            <ul class="text-muted list-inline">
-                                <li><i class="fa fa-calendar"></i> 11/10/2013</li>
-                                <li><i class="fa fa-cog"></i> <a href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                }
+
             </div>
             <div class="col-sm-4">
                 <!-- Social Links -->
-                <h3 class="hl">Bookmark</h3>
+                @*<h3 class="hl">Bookmark</h3>
                 <hr>
                 <div class="social-icons social-icons-default">
                     <ul>
@@ -139,18 +109,16 @@
                         <li class="vimeo"><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
-                </div>
+                </div>*@
 
                 <!-- Tags -->
-                <h3 class="hl">Story tags</h3>
+                <h3 class="hl">Post tags</h3>
                 <hr>
                 <p class="tags">
-                    <a href="#">Bootstrap</a>
-                    <a href="#">HTML5</a>
-                    <a href="#">Highland</a>
-                    <a href="#">Blog post</a>
-                    <a href="#">CSS3</a>
-                    <a href="#">jQuery</a>
+                    @foreach(var tag in Model.Tags)
+                    {
+                    <a href="#">@tag.Tag</a>
+                    }
                 </p>
                 <br />
 

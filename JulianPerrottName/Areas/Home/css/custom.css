@@ -1502,3 +1502,11 @@ li.account p{
     width: 360px;
   }
 }
+
+.waitcursor {
+    cursor: progress !important;
+}
+
+.defaultcursor {
+    cursor: default !important;
+}

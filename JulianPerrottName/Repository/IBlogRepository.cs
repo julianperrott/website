@@ -7,6 +7,6 @@
     {
         List<BlogSummary> GetRecentBlogPosts();
 
-        Blog.be_Posts GetPost(System.Guid postId);
+        BlogPageViewModel GetPost(System.Guid postId);
     }
 }

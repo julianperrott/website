@@ -3,8 +3,11 @@
         Layout = null;
     }
 
-    <h5>@Model.Title.Text</h5>
+    <h5>@Html.Raw(Model.Title.Text)</h5>
     <p class="text-muted">
-        @Html.Raw(Model.Summary.Text)
+        @if (Model.Summary!=null)
+        {
+            Html.Raw(Model.Summary.Text);
+        }
     </p>
     <hr>

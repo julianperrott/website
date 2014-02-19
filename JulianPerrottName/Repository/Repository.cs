@@ -34,9 +34,18 @@
                 CacheForOneHour);
         }
 
-        public Blog.be_Posts GetPost(System.Guid postId)
+        public BlogPageViewModel GetPost(System.Guid postId)
         {
             return new BlogReader().GetPost(postId);
+        }
+
+
+        public List<SyndicationItem> LoadRss(string url)
+        {
+            return this.GetUsingCacheKey<List<SyndicationItem>>(
+               MethodBase.GetCurrentMethod().Name + "_" + url,
+                () => new FeedReader().LoadRss(url),
+                CacheForOneHour);
         }
     }
 }

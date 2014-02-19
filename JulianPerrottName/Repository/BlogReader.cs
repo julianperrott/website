@@ -20,7 +20,7 @@
                 .Where(p => !p.IsDeleted)
                 .Where(p => p.IsPublished.Value)
                 .OrderByDescending(p => p.DateCreated)
-                .Take(3)
+                .Take(20)
                 .ToList();
 
             return this.ReadRecentBlogPosts(posts);
@@ -33,7 +33,9 @@
                 Description = p.Description,
                 PostId = p.PostID,
                 Image = this.GetImageFromPost(p.PostContent),
-                Title = p.Title
+                Title = p.Title,
+                DateCreated=p.DateCreated,
+                Slug=p.Slug
             })
             .ToList();
         }
@@ -86,12 +88,21 @@
             .ToList();
         }
 
-        public be_Posts GetPost(Guid postId)
+        public BlogPageViewModel GetPost(Guid postId)
         {
             var context = new BlogEngineEntities();
-            return context.be_Posts
+
+            BlogPageViewModel model = new BlogPageViewModel()
+            {
+                Post = context.be_Posts
                 .Where(p => p.PostID == postId)
-                .FirstOrDefault();
+                .FirstOrDefault()
+            };
+
+            model.Tags = context.be_PostTag.Where(p => p.PostID == postId).ToList();
+            model.Comments = context.be_PostComment.Where(p => p.PostID == postId).ToList();
+
+            return model;
         }
 
         private static be_Blogs GetBlog(BlogEngineEntities context)
