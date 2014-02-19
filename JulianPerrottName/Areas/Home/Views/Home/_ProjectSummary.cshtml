@@ -1,0 +1,50 @@
+﻿@using JulianPerrottName.Models;
+@model List<SummaryBase>
+
+@{
+    Layout = null;
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>No content found.</p>
+}
+else
+{
+    int i = 0;
+
+    foreach (var summary in Model)
+    {
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <a href="@summary.Url(this.Request.RequestContext)">
+                    <img src="@summary.Image" class="img-responsive" alt="...">
+                    <div class="visit">
+                        <a href="@summary.Url(this.Request.RequestContext)">
+                            <i class="fa fa-question-circle"></i> More details...
+                        </a>
+                    </div>
+                </a>
+                <div class="caption">
+                    <h4>@summary.Title</h4>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p>@summary.Description</p>
+                </div>
+            </div>
+        </div>
+
+        i++;
+        if (i == 2)
+        {
+            <div class="clearfix visible-sm"></div>
+        }
+    }
+}
+
+<a href="#" class="read-more">See more projects...</a>
