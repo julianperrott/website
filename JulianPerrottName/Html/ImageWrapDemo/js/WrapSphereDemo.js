@@ -7,7 +7,7 @@ var WrapSphereDemo;
     window.onload = function () {
         document.getElementById("rangeInput").onchange = Render;
         myImg.onload = Render;
-        myImg.src = "./images/worldmap.gif";
+        myImg.src = "images/worldmap.gif";
     };
 
     function Render() {

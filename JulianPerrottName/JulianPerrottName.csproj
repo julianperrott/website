@@ -234,6 +234,8 @@
     <Content Include="Areas\Home\js\custom.js" />
     <Content Include="Areas\Home\js\jquery-1.9.1.js" />
     <Content Include="Areas\Home\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\Home\js\masonry.pkgd.js" />
+    <Content Include="Areas\Home\js\masonry.pkgd.min.js" />
     <Content Include="Areas\Home\js\scrolltopcontrol.js" />
     <Content Include="Areas\Home\Views\Error\Error404.cshtml" />
     <Content Include="Areas\Home\Views\Contact\Index.cshtml" />
@@ -269,14 +271,33 @@
     <Content Include="Areas\Home\Views\Home\Index.cshtml" />
     <Content Include="BlogEngine\Web.config.txt" />
     <Content Include="BlogEngine\Web.sitemap" />
-    <Content Include="Html\images\worldmap.gif" />
-    <Content Include="Html\js\WrapSphereDemo.js.map" />
+    <Content Include="Html\AnimateCss\AnimateCss.html" />
+    <Content Include="Html\AnimateCss\CssAnimationDemo.html" />
+    <Content Include="Html\AnimateCss\CssAnimationDemo.js" />
+    <Content Include="Html\AnimateCss\images\autumn-garden.jpg" />
+    <Content Include="Html\AnimateCss\images\autumn.jpg" />
+    <Content Include="Html\AnimateCss\images\leaf.png" />
+    <Content Include="Html\AnimateCss\images\leaf1.gif" />
+    <Content Include="Html\AnimateCss\images\leaf1.png" />
+    <Content Include="Html\AnimateCss\images\leaf2.gif" />
+    <Content Include="Html\AnimateCss\images\leaf2.png" />
+    <Content Include="Html\AnimateCss\images\leaf3.gif" />
+    <Content Include="Html\AnimateCss\images\leaf4.gif" />
+    <Content Include="Html\AnimateCss\images\leaf5.gif" />
+    <Content Include="Html\AnimateCss\images\leaf6.gif" />
+    <Content Include="Html\AnimateCss\script\jquery-1.11.0.js" />
+    <Content Include="Html\AnimateCss\script\jquery.transit.js" />
+    <Content Include="Html\ImageWrapDemo\images\worldmap.gif" />
+    <Content Include="Html\ImageWrapDemo\js\WrapSphereDemo.js.map" />
+    <Content Include="Html\ImageWrapDemo\ImageWrapDemo.zip" />
+    <Content Include="Html\AnimateCss\CssAnimation.zip" />
+    <Content Include="Html\AnimateCss\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\julianperrott.pubxml" />
     <None Include="Areas\Home\Views\Blog\Post.cshtml" />
     <None Include="Areas\Home\Views\Blog\Timeline.cshtml" />
     <None Include="Areas\Home\Views\Blog\Index.cshtml" />
-    <Content Include="Html\js\WrapSphereDemo.js" />
-    <Content Include="Html\WrapSphereDemo.html" />
+    <Content Include="Html\ImageWrapDemo\js\WrapSphereDemo.js" />
+    <Content Include="Html\ImageWrapDemo\WrapSphereDemo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -297,7 +318,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Html\js\WrapSphereDemo.ts" />
+    <TypeScriptCompile Include="Html\AnimateCss\CssAnimationDemo.ts" />
+    <TypeScriptCompile Include="Typescript Definitions\jquery.transit.d.ts" />
+    <TypeScriptCompile Include="Html\ImageWrapDemo\js\WrapSphereDemo.ts" />
     <TypeScriptCompile Include="Typescript Definitions\bootstrap.d.ts" />
     <TypeScriptCompile Include="Areas\Home\js\custom.ts" />
     <TypeScriptCompile Include="Typescript Definitions\jquery.d.ts" />

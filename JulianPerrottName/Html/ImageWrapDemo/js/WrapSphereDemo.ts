@@ -6,7 +6,7 @@ module WrapSphereDemo {
     window.onload = function () {
         (<HTMLInputElement>document.getElementById("rangeInput")).onchange = Render;
         myImg.onload = Render;
-        myImg.src = "./images/worldmap.gif";
+        myImg.src = "images/worldmap.gif";
     };
 
     function Render() {
