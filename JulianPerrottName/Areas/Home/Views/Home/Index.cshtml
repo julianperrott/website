@@ -23,3 +23,39 @@
         @*@Html.Partial("_RecentWorks")*@
     </div>
 </div>
+
+@section Scripts {
+
+
+<script type="text/javascript">
+
+    function documentReady() {
+        $("[data-toggle=tooltip").tooltip();
+
+        $("#iEnvyRecline").YouTubePopup({ youtubeId: 'HIU-t_B4Cmc', title: 'My PC - HP Envy Recline 23-k080ea' });
+        $("#iNexus7").YouTubePopup({ youtubeId: 'cK8n54YiabE', title: 'My Nexus 7 Tablet' });
+        $("#iMotoG").YouTubePopup({ youtubeId: 'KFD0Nm2dOHw', title: 'My Moto G Phone' });
+        $("#iLeapMotion").YouTubePopup({ youtubeId: '_d6KuiuteIA', title: 'Leap Motion' });
+
+        Pulse("#iEnvyRecline","animated fadeInDown");
+        Pulse("#iNexus7","animated fadeInLeft");
+        Pulse("#iMotoG","animated fadeInRight");
+        Pulse("#iLeapMotion","animated fadeInRight");
+
+        function Pulse(selector,removeClass) {
+            $(selector).hover(function () {
+                $(selector).removeClass(removeClass)
+                $(selector).addClass('pulse animated');
+            },
+            function () {
+                $(selector).removeClass('pulse animated');
+            });
+        }
+    }
+
+    $(document).ready(documentReady);
+
+</script>
+
+
+}

@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -203,7 +204,24 @@
     <Content Include="Areas\Home\css\bootstrap.min.css" />
     <Content Include="Areas\Home\css\custom.css" />
     <Content Include="Areas\Home\css\elements.css" />
+    <Content Include="Areas\Home\css\images\animated-overlay.gif" />
+    <Content Include="Areas\Home\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Areas\Home\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\Home\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\Home\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Areas\Home\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="Areas\Home\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="Areas\Home\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\Home\css\jquery-ui.css" />
     <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Home\img\23-k080ea.png" />
+    <Content Include="Areas\Home\img\23-k080ea_small.png" />
     <Content Include="Areas\Home\img\about.jpg" />
     <Content Include="Areas\Home\img\bg3.jpg" />
     <Content Include="Areas\Home\img\blank.jpg" />
@@ -222,6 +240,9 @@
     <Content Include="Areas\Home\img\indicator.white.gif" />
     <Content Include="Areas\Home\img\iPad.png" />
     <Content Include="Areas\Home\img\iPhone.png" />
+    <Content Include="Areas\Home\img\Leap-Motion_small.png" />
+    <Content Include="Areas\Home\img\MotoG_small.png" />
+    <Content Include="Areas\Home\img\Nexus7_small.png" />
     <Content Include="Areas\Home\img\works1.jpg" />
     <Content Include="Areas\Home\img\works2.jpg" />
     <Content Include="Areas\Home\img\works2_big.jpg" />
@@ -234,13 +255,14 @@
     <Content Include="Areas\Home\js\custom.js" />
     <Content Include="Areas\Home\js\jquery-1.9.1.js" />
     <Content Include="Areas\Home\js\jquery-1.9.1.min.js" />
-    <Content Include="Areas\Home\js\masonry.pkgd.js" />
-    <Content Include="Areas\Home\js\masonry.pkgd.min.js" />
+    <Content Include="Areas\Home\js\jquery-ui.min.js" />
+    <Content Include="Areas\Home\js\jquery.youtubepopup.min.js" />
     <Content Include="Areas\Home\js\scrolltopcontrol.js" />
     <Content Include="Areas\Home\Views\Error\Error404.cshtml" />
     <Content Include="Areas\Home\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Home\js\custom.js.map" />
     <Content Include="Areas\Home\Views\Contact\Send.cshtml" />
+    <Content Include="Areas\Home\css\images\Thumbs.db" />
     <None Include="Areas\Home\Views\Gallery\Bubbles.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Item.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Text.cshtml" />

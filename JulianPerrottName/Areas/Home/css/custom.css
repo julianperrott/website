@@ -118,8 +118,9 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 	width: 438px;
 	margin: 0 auto;
 }
-.iMac {
-	background: url(../img/iMac.png);
+
+.iEnvyRecline {
+	background: url(../img/23-k080ea_small.png);
 	height: 300px;
 	width: 351px;
 	background-size: cover;
@@ -129,30 +130,47 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 	-webkit-animation-duration: 1s;
 	-moz-animation-delay: 1s;
 }
-.iPad {
-	background: url(../img/iPad.png);
-	height: 228px;
-	width: 174px;
+
+.iNexus7 {
+	background: url(../img/Nexus7_small.png);
+	height: 200px;
+	width: 126px;
 	background-size: cover;
 	background-position: center;
 	position: absolute;
-	top: 138px;
+	top: 162px;
 	left: -50px;
 	-webkit-animation-duration: 1.3s;
 	-moz-animation-delay: 1.3s;
 }
-.iPhone {
-	background: url(../img/iPhone.png);
+
+.iMotoG {
+	background: url(../img/MotoG_Small.png);
 	height: 152px;
-	width: 56px;
+	width: 78px;
 	background-size: cover;
 	background-position: center;
 	position: absolute;
 	top: 208px;
-	left: 70px;
+	left: 30px;
 	-webkit-animation-duration: 1.6s;
 	-moz-animation-delay: 1.6s;
 }
+
+
+.iLeapMotion {
+	background: url(../img/Leap-Motion_small.png);
+	width: 110px;
+    height: 25px;
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+	top: 358px;
+	left: 160px;
+	-webkit-animation-duration: 1.6s;
+	-moz-animation-delay: 1.6s;
+}
+
 .list {
 	margin: 50px 0 50px 50px;
 }
@@ -1509,4 +1527,19 @@ li.account p{
 
 .defaultcursor {
     cursor: default !important;
+}
+
+/* Bootstrap Tooltip */
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+.red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00;  border-top-color:#f00; }
+
+.green-tooltip + .tooltip > .tooltip-inner {background-color: #0c9313;}
+.green-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#0c9313;  border-top-color:#0c9313; }
+
+.ui-widget-header {
+	border: 1px solid #515151/*{borderColorHeader}*/;
+	background: #515151;
+	color: #ffffff/*{fcHeader}*/;
+	font-weight: bold;
+    font-family: "Lato", sans-serif;
 }
