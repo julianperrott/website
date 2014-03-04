@@ -42,7 +42,8 @@
         Pulse("#iMotoG","animated fadeInRight");
         Pulse("#iLeapMotion","animated fadeInRight");
 
-        function Pulse(selector,removeClass) {
+        function Pulse(selector, removeClass) {
+
             $(selector).hover(function () {
                 $(selector).removeClass(removeClass)
                 $(selector).addClass('pulse animated');

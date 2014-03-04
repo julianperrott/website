@@ -218,7 +218,9 @@
     <Content Include="Areas\Home\css\images\ui-icons_454545_256x240.png" />
     <Content Include="Areas\Home\css\images\ui-icons_888888_256x240.png" />
     <Content Include="Areas\Home\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\Home\css\jquery-ui-1.10.4.custom.css" />
     <Content Include="Areas\Home\css\jquery-ui.css" />
+    <Content Include="Areas\Home\css\lato.css" />
     <Content Include="Areas\Home\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Areas\Home\img\23-k080ea.png" />
     <Content Include="Areas\Home\img\23-k080ea_small.png" />
@@ -241,6 +243,7 @@
     <Content Include="Areas\Home\img\iPad.png" />
     <Content Include="Areas\Home\img\iPhone.png" />
     <Content Include="Areas\Home\img\Leap-Motion_small.png" />
+    <Content Include="Areas\Home\img\logo.png" />
     <Content Include="Areas\Home\img\MotoG_small.png" />
     <Content Include="Areas\Home\img\Nexus7_small.png" />
     <Content Include="Areas\Home\img\works1.jpg" />
@@ -255,7 +258,9 @@
     <Content Include="Areas\Home\js\custom.js" />
     <Content Include="Areas\Home\js\jquery-1.9.1.js" />
     <Content Include="Areas\Home\js\jquery-1.9.1.min.js" />
+    <Content Include="Areas\Home\js\jquery-ui-1.10.4.custom.js" />
     <Content Include="Areas\Home\js\jquery-ui.min.js" />
+    <Content Include="Areas\Home\js\jquery.youtubepopup.js" />
     <Content Include="Areas\Home\js\jquery.youtubepopup.min.js" />
     <Content Include="Areas\Home\js\scrolltopcontrol.js" />
     <Content Include="Areas\Home\Views\Error\Error404.cshtml" />
@@ -263,6 +268,12 @@
     <Content Include="Areas\Home\js\custom.js.map" />
     <Content Include="Areas\Home\Views\Contact\Send.cshtml" />
     <Content Include="Areas\Home\css\images\Thumbs.db" />
+    <Content Include="Areas\Home\fonts\9k-RPmcnxYEPm8CNFsH2gg.woff" />
+    <Content Include="Areas\Home\fonts\boeCNmOCCh-EWFLSfVffDg.woff" />
+    <Content Include="Areas\Home\fonts\KT3KS9Aol4WfR6Vas8kNcg.woff" />
+    <Content Include="Areas\Home\js\jquery.youtubepopup.min.js.map">
+      <DependentUpon>jquery.youtubepopup.js</DependentUpon>
+    </Content>
     <None Include="Areas\Home\Views\Gallery\Bubbles.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Item.cshtml" />
     <None Include="Areas\Home\Views\Gallery\Text.cshtml" />
@@ -275,7 +286,10 @@
     <Content Include="Areas\Home\Views\Home\_Welcome.cshtml" />
     <Content Include="Areas\Home\Views\Home\_ProjectSummary.cshtml" />
     <None Include="BlogEngine\Admin\Reset.aspx" />
+    <Content Include="Areas\Home\css\font-awesome.css" />
+    <Content Include="Areas\Home\css\font-awesome.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Areas\Home\fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Home\Views\Shared\_Head.cshtml" />
     <Content Include="Areas\Home\Views\Shared\_Footer.cshtml" />
@@ -295,7 +309,6 @@
     <Content Include="BlogEngine\Web.sitemap" />
     <Content Include="Html\AnimateCss\AnimateCss.html" />
     <Content Include="Html\AnimateCss\CssAnimationDemo.html" />
-    <Content Include="Html\AnimateCss\CssAnimationDemo.js" />
     <Content Include="Html\AnimateCss\images\autumn-garden.jpg" />
     <Content Include="Html\AnimateCss\images\autumn.jpg" />
     <Content Include="Html\AnimateCss\images\leaf.png" />
@@ -314,6 +327,10 @@
     <Content Include="Html\ImageWrapDemo\ImageWrapDemo.zip" />
     <Content Include="Html\AnimateCss\CssAnimation.zip" />
     <Content Include="Html\AnimateCss\images\Thumbs.db" />
+    <Content Include="Areas\Home\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Home\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Home\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Home\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\julianperrott.pubxml" />
     <None Include="Areas\Home\Views\Blog\Post.cshtml" />
     <None Include="Areas\Home\Views\Blog\Timeline.cshtml" />
@@ -334,7 +351,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
     <Folder Include="Filters\" />
+    <Folder Include="fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
