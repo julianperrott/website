@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html style="margin:10px">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @{ if (ViewBag.Meta!=null)
+       {
+           @Html.Raw(ViewBag.Meta);
+       }
+    }
+ 
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/Feedback/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>@ViewBag.Title</h3>
+    @RenderBody()
+</body>
+</html>
