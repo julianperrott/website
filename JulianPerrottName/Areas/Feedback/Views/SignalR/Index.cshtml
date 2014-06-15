@@ -3,9 +3,7 @@
 }
 
 <div class="well">
-    <form action="@Url.Action("RunAsynchronousTask")" method="post">
-        <input type="submit" class="btn btn-primary" value="Click here to run the task" />
-    </form>
+    <a href="@Url.Action("RunAsynchronousTask")" class="btn btn-primary">Click here to start the task</a>
 </div>
 <p>The server will start the task. This can take up to a minute.</p>
 <p>A page will be shown while the server processes, and will use Signal R to listen for completion.</p>

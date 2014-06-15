@@ -18,7 +18,7 @@ namespace JulianPerrottName.Areas.Feedback.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public RedirectToRouteResult RunAsynchronousTask()
         {
             this.Session["StartTime"] = DateTime.Now;

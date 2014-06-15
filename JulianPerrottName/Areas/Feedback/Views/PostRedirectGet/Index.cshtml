@@ -3,9 +3,7 @@
 }
 
 <div class="well">
-    <form action="@Url.Action("RunSynchronousTask")" method="post">
-        <input type="submit" class="btn btn-primary" value="Click here to run the task" />
-    </form>
+    <a href="@Url.Action("RunSynchronousTask")" class="btn btn-primary">Click here to start the task</a>
 </div>
 
 <p>The server will not respond until the task completes. This can take up to a minute.</p>
