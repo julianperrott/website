@@ -234,7 +234,8 @@
     <Content Include="Areas\Feedback\js\jquery-1.9.1.js" />
     <Content Include="Areas\Feedback\js\jquery.signalR-2.0.3.js" />
     <Content Include="Areas\Home\css\animate.css" />
-    <Content Include="Areas\Home\css\bootstrap.css" />
+    <Content Include="Html\Promises\jquery_promises.html" />
+    <Content Include="Html\Promises\bootstrap.css" />
     <Content Include="Areas\Home\css\bootstrap.min.css" />
     <Content Include="Areas\Home\css\custom.css" />
     <Content Include="Areas\Home\css\elements.css" />
@@ -386,6 +387,9 @@
     <None Include="Areas\Home\Views\Blog\Index.cshtml" />
     <Content Include="Html\ImageWrapDemo\js\WrapSphereDemo.js" />
     <Content Include="Html\ImageWrapDemo\WrapSphereDemo.html" />
+    <Content Include="Html\Promises\angular_promises.html" />
+    <Content Include="Html\Promises\js\angular.min.js" />
+    <Content Include="Html\Promises\js\jquery-1.11.0.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
